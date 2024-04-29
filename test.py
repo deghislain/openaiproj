@@ -1,7 +1,5 @@
-from langchain.agents.agent_toolkits import create_python_agent
 from langchain.agents import load_tools, initialize_agent
 from langchain.agents import AgentType
-from langchain.tools.python.tool import PythonREPLTool
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import tool
 from datetime import date
@@ -9,11 +7,7 @@ import os
 from colorama import Fore
 
 llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo", openai_api_key=os.getenv('OPEN_AI_KEY'))
-agent = create_python_agent(
-    llm,
-    tool=PythonREPLTool(),
-    verbose=True
-)
+
 tools = load_tools(["llm-math"], llm=llm)
 
 

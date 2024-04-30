@@ -70,7 +70,7 @@ def main(matched):
             print("Authentication successfully completed")
             break
         else:
-            print("Invalid password or username, please try again")
+            print("Invalid password or username, let try again")
 
 
 if __name__ == "__main__":

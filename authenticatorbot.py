@@ -54,25 +54,19 @@ agent = initialize_agent(
 )
 
 messages = context.copy()
-
-def main():
+def main(matched):
     username = ""
-    result = "auth"
-    password = ""
-    while username != "0":
-        if result == "auth":
-            response = get_completion_from_messages(messages, temperature=0)
-            print(response)
-        else:
-            print(result)
-
+    while not matched:
+        response = get_completion_from_messages(messages, temperature=0)
+        print(response)
         username = str(input())
         user_stored_password = agent.run(username)
 
-        print("Enter your password please")
+        print("Enter your password please ")
         password = str(input())
 
         if user_stored_password == password:
+            matched = bool(True)
             print("Authentication successfully completed")
             break
         else:
@@ -80,4 +74,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(False)

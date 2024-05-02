@@ -1,17 +1,17 @@
 import openai
-import panel as pn  # GUI
 import os
 from langchain.agents import load_tools, initialize_agent
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import tool
 import db_con
 
+openai.api_key = os.getenv('OPEN_AI_KEY')
 llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo", openai_api_key=os.getenv('OPEN_AI_KEY'))
 
 tools = load_tools(["llm-math"], llm=llm)
-pn.extension()
 
-openai.api_key = os.getenv('OPEN_AI_KEY')
+
+
 context = [{'role': 'system', 'content': """
 You are AuthenticatorBot, an automated service to authenticate users. \
 You first greet the customer \
